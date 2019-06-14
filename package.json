@@ -1,5 +1,5 @@
 {
-  "name": "react-storage",
+  "name": "react-storage-hook",
   "version": "1.0.0",
   "description": "A React component which persists its props across sessions via localStorage.",
   "author": "zemnmez",

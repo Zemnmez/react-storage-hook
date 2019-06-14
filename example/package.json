@@ -1,5 +1,5 @@
 {
-  "name": "react-storage-example",
+  "name": "react-storage-hook-example",
   "homepage": "https://zemnmez.github.io/react-storage",
   "version": "0.0.0",
   "license": "MIT",
@@ -9,7 +9,7 @@
     "react": "link:../node_modules/react",
     "react-dom": "link:../node_modules/react-dom",
     "react-scripts": "^1.1.4",
-    "react-storage": "link:.."
+    "react-storage-hook": "link:.."
   },
   "scripts": {
     "start": "react-scripts start",

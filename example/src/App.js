@@ -1,6 +1,6 @@
 import React from 'react'
 
-import { useStorage } from 'react-storage'
+import { useStorage } from 'react-storage-hook'
 
 export default class App extends React.PureComponent {
   render () {
