@@ -6402,7 +6402,7 @@ react-scripts@^1.1.4:
   optionalDependencies:
     fsevents "^1.1.3"
 
-"react-storage@link:..":
+"react-storage-hook@link:..":
   version "0.0.0"
   uid ""
 
