@@ -33,6 +33,15 @@ export const SavedTextarea = () => {
 
 ```
 
+## Reference
+### useStorage(name, { placeholder, storageArea = window.localStorage })
+#### name
+The key that the value will be stored under.
+#### placeholder (optional)
+The initial value, if no value is already stored.
+#### storageArea (optional)
+An [nsIDOMStorage](https://developer.mozilla.org/en-US/docs/Mozilla/Tech/XPCOM/Reference/Interface/nsIDOMStorage) i.e. localStorage or sessionStorage (defaults to localStorage).
+
 ## License
 
 MIT © [zemnmez](https://github.com/zemnmez)
