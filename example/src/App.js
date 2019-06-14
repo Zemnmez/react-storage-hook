@@ -1,13 +1,27 @@
-import React, { Component } from 'react'
+import React, { PureComponent, useState, createRef } from 'react'
 
-import ExampleComponent from 'react-storage'
+import Storage from 'react-storage'
 
-export default class App extends Component {
+export default class App extends React.PureComponent {
   render () {
     return (
-      <div>
-        <ExampleComponent text='Modern React component module' />
-      </div>
+      <SavedCheckbox/>
     )
   }
+}
+
+const SavedCheckbox = () => {
+  const [checked, setChecked] = React.useState(false);
+  const checkRef = React.createRef();
+  const onCheckChange = () => setChecked(checkRef.current.value);
+
+  return <Storage value={{checked}} name={"checkbox-checked"}>
+      {({checked: storedChecked }) => <input
+        type="checkbox"
+        checked={storedChecked}
+        ref={checkRef}
+        onChanged={onCheckChange}
+      />}
+    </Storage>
+
 }
