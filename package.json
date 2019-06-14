@@ -1,10 +1,10 @@
 {
   "name": "react-storage-hook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A React component which persists its props across sessions via localStorage.",
   "author": "zemnmez",
   "license": "MIT",
-  "repository": "zemnmez/react-storage",
+  "repository": "zemnmez/react-storage-hook",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
