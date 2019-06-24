@@ -1,6 +1,6 @@
 {
-  "short_name": "react-storage-hook-example",
-  "name": "react-storage-hook-example",
+  "short_name": "react-storage-hook",
+  "name": "react-storage-hook",
   "start_url": "./index.html",
   "display": "standalone",
   "theme_color": "#000000",
