@@ -22,13 +22,14 @@
 ```bash
 yarn add react-storage-hook
 ```
-
+Check out the [live example](https://zemnmez.github.io/react-storage-hook)!
 ## Example
 
 **`example`** 
 
 ```javascript
 import React from 'react'
+import { useStorage } from 'react-storage-hook'
 
 export const SavedTextarea = () => {
 const [text, setText] = useStorage('saved-text', {
@@ -60,7 +61,7 @@ value: text
 
 Ƭ **immutableValue**: *any*
 
-*Defined in [index.tsx:21](https://github.com/Zemnmez/react-storage-hook/blob/db3d95c/src/index.tsx#L21)*
+*Defined in [index.tsx:21](https://github.com/Zemnmez/react-storage-hook/blob/d59c6e8/src/index.tsx#L21)*
 
 An immutableValue is a value that would be returned
 by immutable.js's [immutable.fromJS](https://github.com/immutable-js/immutable-js/wiki/Converting-from-JS-objects).
@@ -73,7 +74,7 @@ ___
 
 ▸ **useStorage**<**InputType**>(`name`: string, `__namedParameters`: object): *[[immutableValue](README.md#immutablevalue), `setStored<InputType>`]*
 
-*Defined in [index.tsx:39](https://github.com/Zemnmez/react-storage-hook/blob/db3d95c/src/index.tsx#L39)*
+*Defined in [index.tsx:39](https://github.com/Zemnmez/react-storage-hook/blob/d59c6e8/src/index.tsx#L39)*
 
 useStorage is a react hook providing integration and synchronization with
 localStorage. The value returned will likely not be the same type as input,

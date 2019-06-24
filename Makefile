@@ -1,6 +1,14 @@
 dist: src $(wildcard src/*)
 	yarn run rollup -c
 
+
+.PHONY: gh-pages
+gh-pages: example/build
+	gh-pages -d example/build
+
+example/build: dist example/src $(wildcard example/src/*)
+	cd example && yarn run build
+
 .INTERMEDIATE: docs
 docs: src/doc.tsx $(wildcard src/*.ts*)
 	- rm README.md # for some reason it ignores --entrypoint if there's an existing readme...

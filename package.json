@@ -1,6 +1,6 @@
 {
   "name": "react-storage-hook",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "A react state hook that is synchronised and persisted in localStorage, and between tabs.",
   "author": "zemnmez",
   "license": "MIT",
@@ -15,11 +15,9 @@
   "scripts": {
     "test": "cross-env CI=1 react-scripts-ts test --env=jsdom",
     "test:watch": "react-scripts-ts test --env=jsdom",
-    "build": "yarn run make dist",
+    "build": "yarn run make dist README.md",
     "start": "rollup -c -w",
-    "prepare": "yarn run build",
-    "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build",
+    "deploy": "yarn make gh-pages",
     "make": "make -j"
   },
   "dependencies": {},

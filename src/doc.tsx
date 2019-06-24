@@ -13,12 +13,13 @@
  * ```bash
  * yarn add react-storage-hook
  * ```
- * 
+ * Check out the [live example](https://zemnmez.github.io/react-storage-hook)!
  * ## Example
  * @example
  * 
  * ```javascript
  * import React from 'react'
+ * import { useStorage } from 'react-storage-hook'
  * 
  * export const SavedTextarea = () => {
  *   const [text, setText] = useStorage('saved-text', {
