@@ -1,10 +1,10 @@
 {
   "name": "react-storage-hook",
   "version": "1.0.0",
-  "description": "",
+  "description": "A react state hook that is synchronised and persisted in localStorage, and between tabs.",
   "author": "zemnmez",
   "license": "MIT",
-  "repository": "",
+  "repository": "git@github.com:Zemnmez/react-storage-hook.git",
   "main": "dist/index.js",
   "module": "dist/index.es.js",
   "jsnext:main": "dist/index.es.js",
@@ -15,11 +15,12 @@
   "scripts": {
     "test": "cross-env CI=1 react-scripts-ts test --env=jsdom",
     "test:watch": "react-scripts-ts test --env=jsdom",
-    "build": "rollup -c",
+    "build": "yarn run make dist",
     "start": "rollup -c -w",
     "prepare": "yarn run build",
     "predeploy": "cd example && yarn install && yarn run build",
-    "deploy": "gh-pages -d example/build"
+    "deploy": "gh-pages -d example/build",
+    "make": "make -j"
   },
   "dependencies": {},
   "peerDependencies": {
@@ -48,6 +49,9 @@
     "rollup-plugin-postcss": "^1.6.2",
     "rollup-plugin-typescript2": "^0.17.0",
     "rollup-plugin-url": "^1.4.0",
+    "typedoc": "^0.14.2",
+    "typedoc-plugin-external-module-name": "^2.1.0",
+    "typedoc-plugin-markdown": "^2.0.6",
     "typescript": "^2.8.3"
   },
   "files": [

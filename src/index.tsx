@@ -1,14 +1,54 @@
+/**
+ * @module react-storage-hook
+ */
+
+/**
+ *
+ */
+
 import { fromJS } from 'immutable'
 import * as React from 'react'
+
+/**
+ * @hidden
+ */
 const Immutable = { fromJS }
 
-type stored = any
+/**
+ * An immutableValue is a value that would be returned
+ * by immutable.js's [immutable.fromJS](https://github.com/immutable-js/immutable-js/wiki/Converting-from-JS-objects).
+ */
+type immutableValue = any
+
+/**
+ * @hidden
+ */
 type setStored<Kind> = (newValue: Kind) => void
 
+/**
+ * useStorage is a react hook providing integration and synchronization with
+ * localStorage. The value returned will likely not be the same type as input,
+ * unless the input type is an immutable value that
+ * would be produced by immutable.js.
+ *
+ * The output value will always be an [[immutableValue]] of the kind produced by
+ * immutable.js.
+ * @param name The key used to store the data in.
+ * @param InputType An optional type used for the stored value. This is only a type assertion on the input. The output type will always be a value returned by Immutable.fromJS.
+ */
 export const useStorage = <InputType extends {}>(name: string, {
-  placeholder, storageArea = window.localStorage } : {
-    placeholder: any, storageArea: Storage
-  }): [stored, setStored<InputType>] => {
+   /**
+    * The default value if no stored value is found.
+    */
+    placeholder,
+
+   /**
+    * The Storage used. Defaults to localStorage.
+    */
+    storageArea = window.localStorage
+} : {
+    placeholder: InputType, storageArea: Storage
+  }): [immutableValue, setStored<InputType>] => {
     const currentItem = storageArea.getItem(name)
     const [value, setValue] = React.useState(
       currentItem?
@@ -39,6 +79,7 @@ export const useStorage = <InputType extends {}>(name: string, {
     })
   }
 
+
   // listen to storage events on mount and unmount
   React.useEffect(() => {
     window.addEventListener('storage', onStorage)
@@ -49,3 +90,5 @@ export const useStorage = <InputType extends {}>(name: string, {
 
   return [value, setStorage]
 }
+
+export default useStorage;
