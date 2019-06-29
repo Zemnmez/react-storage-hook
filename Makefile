@@ -10,7 +10,7 @@ example/build: dist example/src $(wildcard example/src/*)
 	cd example && yarn run build
 
 .INTERMEDIATE: docs
-docs: src/doc.tsx $(wildcard src/*.ts*)
+docs: src/doc.tsx $(wildcard src/*.ts*) $(wildcard node_modules/typedoc*)
 	- rm README.md # for some reason it ignores --entrypoint if there's an existing readme...
 	yarn run typedoc --entryPoint "$$(jq -r '.name' package.json)" --theme markdown --out docs/
 	cp -r docs/* .
