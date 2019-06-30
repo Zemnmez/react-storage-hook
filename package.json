@@ -1,6 +1,6 @@
 {
   "name": "react-storage-hook",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A react state hook that is synchronised and persisted in localStorage, and between tabs.",
   "author": "zemnmez",
   "license": "MIT",
@@ -22,10 +22,10 @@
   },
   "dependencies": {},
   "peerDependencies": {
+    "immutable": "^4.0.0-rc.12",
     "prop-types": "^15.5.4",
     "react": "^15.0.0 || ^16.0.0",
-    "react-dom": "^15.0.0 || ^16.0.0",
-    "immutable": "^4.0.0-rc.12"
+    "react-dom": "^15.0.0 || ^16.0.0"
   },
   "devDependencies": {
     "@svgr/rollup": "^2.4.1",
