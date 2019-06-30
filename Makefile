@@ -1,4 +1,4 @@
-dist: src $(wildcard src/*)
+dist: src $(wildcard src/*) package.json tsconfig.json
 	yarn run rollup -c
 
 
