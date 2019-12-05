@@ -39,7 +39,7 @@ interface Options<InputType> {
  */
 export const useStorage = <InputType extends {}>(
     name: string,
-    { placeholder, storageArea = window.localStorage } : Options<InputType>
+    { placeholder, storageArea = window.localStorage } : Options<InputType> = {}
 ): [Readonly<InputType>, setStored<InputType>] => {
     const currentItem = storageArea.getItem(name)
     const [value, setValue] = React.useState(
