@@ -59,7 +59,7 @@ export const SavedTextarea = () => {
 
 ▸ **useStorage**<**InputType**>(`name`: *string*, `__namedParameters`: *object*): *[`Readonly<InputType>`, `setStored<InputType>`]*
 
-*Defined in [index.tsx:40](https://github.com/noahm/react-storage-hook/blob/0e6f364/src/index.tsx#L40)*
+*Defined in [index.tsx:40](https://github.com/noahm/react-storage-hook/blob/7bbad39/src/index.tsx#L40)*
 
 useStorage is a react hook providing integration and synchronization with
 localStorage. The value returned will likely not be the same type as input,

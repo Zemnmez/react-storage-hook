@@ -25,7 +25,7 @@
 
 • **placeholder**? : *[InputType]()*
 
-*Defined in [index.tsx:21](https://github.com/noahm/react-storage-hook/blob/0e6f364/src/index.tsx#L21)*
+*Defined in [index.tsx:21](https://github.com/noahm/react-storage-hook/blob/7bbad39/src/index.tsx#L21)*
 
 The default value if no stored value is found.
 
@@ -35,6 +35,6 @@ ___
 
 • **storageArea**? : *`Storage`*
 
-*Defined in [index.tsx:26](https://github.com/noahm/react-storage-hook/blob/0e6f364/src/index.tsx#L26)*
+*Defined in [index.tsx:26](https://github.com/noahm/react-storage-hook/blob/7bbad39/src/index.tsx#L26)*
 
 The Storage used. Defaults to localStorage.

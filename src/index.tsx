@@ -42,9 +42,17 @@ export const useStorage = <InputType extends {}>(
     { placeholder, storageArea = window.localStorage } : Options<InputType> = {}
 ): [Readonly<InputType>, setStored<InputType>] => {
     const currentItem = storageArea.getItem(name)
+    let parsedValue = currentItem;
+    if (currentItem) {
+        try {
+            parsedValue = JSON.parse(currentItem);
+        } catch (e) {
+            // console.warn(`[useStorage] could not decode ${name} from storage`, e);
+        }
+    }
     const [value, setValue] = React.useState(
       currentItem?
-      fromJS(currentItem):
+      fromJS(parsedValue):
       placeholder
     )
 
