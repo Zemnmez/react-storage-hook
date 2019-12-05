@@ -2,8 +2,6 @@
 
 [Globals]() / [react-storage-hook](README.md) /
 
-**`requires`** prop-types
-
 **`requires`** react
 
 **`requires`** react-dom
@@ -47,39 +45,28 @@ export const SavedTextarea = () => {
 
 ### Index
 
-#### Type aliases
+#### Interfaces
 
-* [immutableValue](README.md#immutablevalue)
+* [Options](interfaces/react_storage_hook.options.md)
 
 #### Functions
 
 * [useStorage](README.md#const-usestorage)
 
-## Type aliases
-
-###  immutableValue
-
-Ƭ **immutableValue**: *any*
-
-*Defined in [index.tsx:21](https://github.com/Zemnmez/react-storage-hook/blob/71ee183/src/index.tsx#L21)*
-
-An immutableValue is a value that would be returned
-by immutable.js's [immutable.fromJS](https://github.com/immutable-js/immutable-js/wiki/Converting-from-JS-objects).
-
 ## Functions
 
 ### `Const` useStorage
 
-▸ **useStorage**<**InputType**>(`name`: *string*, `__namedParameters`: *object*): *[[immutableValue](README.md#immutablevalue), `setStored<InputType>`]*
+▸ **useStorage**<**InputType**>(`name`: *string*, `__namedParameters`: *object*): *[`Readonly<InputType>`, `setStored<InputType>`]*
 
-*Defined in [index.tsx:39](https://github.com/Zemnmez/react-storage-hook/blob/71ee183/src/index.tsx#L39)*
+*Defined in [index.tsx:40](https://github.com/noahm/react-storage-hook/blob/7bbad39/src/index.tsx#L40)*
 
 useStorage is a react hook providing integration and synchronization with
 localStorage. The value returned will likely not be the same type as input,
 unless the input type is an immutable value that
 would be produced by immutable.js.
 
-The output value will always be an [immutableValue](README.md#immutablevalue) of the kind produced by
+The output value will always be an [[immutableValue]] of the kind produced by
 immutable.js.
 
 **Type parameters:**
@@ -92,11 +79,11 @@ immutable.js.
 
 The key used to store the data in.
 
-▪ **__namedParameters**: *object*
+▪`Default value`  **__namedParameters**: *object*=  {}
 
-Name | Type | Default | Description |
------- | ------ | ------ | ------ |
-`placeholder` | `InputType` | - | The default value if no stored value is found. |
-`storageArea` | `Storage` |  window.localStorage | The Storage used. Defaults to localStorage. |
+Name | Type | Default |
+------ | ------ | ------ |
+`placeholder` | undefined \| `InputType` | - |
+`storageArea` | `Storage` |  window.localStorage |
 
-**Returns:** *[[immutableValue](README.md#immutablevalue), `setStored<InputType>`]*
+**Returns:** *[`Readonly<InputType>`, `setStored<InputType>`]*

@@ -6,8 +6,6 @@
 
 **`module`** react-storage-hook
 
-**`requires`** prop-types
-
 **`requires`** react
 
 **`requires`** react-dom
