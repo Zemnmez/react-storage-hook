@@ -12,18 +12,19 @@ import * as React from 'react'
 /**
  * @hidden
  */
-const Immutable = { fromJS }
-
-/**
- * An immutableValue is a value that would be returned
- * by immutable.js's [immutable.fromJS](https://github.com/immutable-js/immutable-js/wiki/Converting-from-JS-objects).
- */
-type immutableValue = any
-
-/**
- * @hidden
- */
 type setStored<Kind> = (newValue: Kind) => void
+
+interface Options<InputType> {
+   /**
+    * The default value if no stored value is found.
+    */
+    placeholder?: InputType;
+
+   /**
+    * The Storage used. Defaults to localStorage.
+    */
+    storageArea?: Storage;
+}
 
 /**
  * useStorage is a react hook providing integration and synchronization with
@@ -36,23 +37,14 @@ type setStored<Kind> = (newValue: Kind) => void
  * @param name The key used to store the data in.
  * @param InputType An optional type used for the stored value. This is only a type assertion on the input. The output type will always be a value returned by Immutable.fromJS.
  */
-export const useStorage = <InputType extends {}>(name: string, {
-   /**
-    * The default value if no stored value is found.
-    */
-    placeholder,
-
-   /**
-    * The Storage used. Defaults to localStorage.
-    */
-    storageArea = window.localStorage
-} : {
-    placeholder: InputType, storageArea: Storage
-  }): [immutableValue, setStored<InputType>] => {
+export const useStorage = <InputType extends {}>(
+    name: string,
+    { placeholder, storageArea = window.localStorage } : Options<InputType>
+): [Readonly<InputType>, setStored<InputType>] => {
     const currentItem = storageArea.getItem(name)
     const [value, setValue] = React.useState(
       currentItem?
-      Immutable.fromJS(currentItem):
+      fromJS(currentItem):
       placeholder
     )
 
@@ -62,7 +54,7 @@ export const useStorage = <InputType extends {}>(name: string, {
     // there could, or perhaps *should* be an extra check for if our local value differs from
     // the stored value, but this should be handled internally via React.
     if (key !== name || newValue == null || oldValue === newValue || storageArea !== eventStorageArea) return
-    return setValue(Immutable.fromJS(JSON.parse(newValue)))
+    return setValue(fromJS(JSON.parse(newValue)))
   }
 
   const setStorage = (value: InputType) => {
