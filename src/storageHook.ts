@@ -40,7 +40,7 @@ export const useStorage = <InputType>(
     {
         placeholder,
         storageArea = window.localStorage
-    }: Options<InputType>
+    }: Options<InputType> = {}
 ): [Readonly<InputType>, setStored<InputType>] => {
     let currentValue = storageArea.getItem(name);
 

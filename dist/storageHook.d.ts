@@ -27,5 +27,5 @@ export interface Options<InputType> {
  * @param placeholder Default value if nothing stored
  * @param storageArea Storage to use (default window.localStorage)
  */
-export declare const useStorage: <InputType>(name: string, { placeholder, storageArea }: Options<InputType>) => [Readonly<InputType>, setStored<InputType>];
+export declare const useStorage: <InputType>(name: string, { placeholder, storageArea }?: Options<InputType>) => [Readonly<InputType>, setStored<InputType>];
 //# sourceMappingURL=storageHook.d.ts.map

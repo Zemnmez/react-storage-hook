@@ -25,14 +25,12 @@ const SelfFrame = () => {
 }
 
 const SavedCheckbox = () => {
-  const [checked, setChecked] = useStorage('saved-checkbox-checked', {
-    placeholder: false
-  });
+  const [checked, setChecked] = useStorage('saved-checkbox-checked');
 
   const onChange = (e: React.ChangeEvent) => setChecked((e.target as HTMLInputElement).checked);
 
   return <input {...{
-    checked,
+    checked: !!checked,
     onChange,
     type: "checkbox"
   }}/>

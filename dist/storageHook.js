@@ -16,7 +16,7 @@ const React = __importStar(require("react"));
  * @param placeholder Default value if nothing stored
  * @param storageArea Storage to use (default window.localStorage)
  */
-exports.useStorage = (name, { placeholder, storageArea = window.localStorage }) => {
+exports.useStorage = (name, { placeholder, storageArea = window.localStorage } = {}) => {
     let currentValue = storageArea.getItem(name);
     if (currentValue) {
         try {
