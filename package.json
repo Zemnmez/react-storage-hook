@@ -1,6 +1,6 @@
 {
   "name": "react-storage-hook",
-  "version": "2.0.1",
+  "version": "2.0.2",
   "description": "A react state hook that is synchronised and persisted in localStorage, and between tabs.",
   "author": "zemnmez",
   "license": "MIT",
