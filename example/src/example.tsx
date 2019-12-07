@@ -6,7 +6,8 @@ export const SavedTextarea = () => {
     placeholder: ""
   });
 
-  const onChange = e => setText(e.target.value);
+  const onChange = (e: React.ChangeEvent) => setText(
+    (e.target as HTMLInputElement).value);
 
   return <textarea {...{
     onChange,

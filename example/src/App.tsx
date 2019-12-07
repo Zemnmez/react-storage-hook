@@ -29,7 +29,7 @@ const SavedCheckbox = () => {
     placeholder: false
   });
 
-  const onChange = e => setChecked(e.target.checked);
+  const onChange = (e: React.ChangeEvent) => setChecked((e.target as HTMLInputElement).checked);
 
   return <input {...{
     checked,
