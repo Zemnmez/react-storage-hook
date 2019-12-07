@@ -7,6 +7,11 @@
   "repository": "Zemnmez/react-storage-hook",
   "types": "dist/index.d.ts",
   "browser": "dist/index.js",
+  "tags": [
+    "react",
+    "typescript",
+    "react-hooks"
+  ],
   "engines": {
     "node": ">=8",
     "npm": ">=5"

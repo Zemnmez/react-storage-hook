@@ -1,89 +1,38 @@
-> **[react-storage-hook](README.md)**
+react-storage-hook
+==================
 
-[Globals]() / [react-storage-hook](README.md) /
+Javascript library for synchronously managing localStorage / sessionStorage. Typescript types included.
 
-**`requires`** react
-
-**`requires`** react-dom
-
-**`summary`** A react state hook that is synchronised and persisted in localStorage, and between tabs.
-
-**`version`** 1.0.0
-
-**`author`** zemnmez
-
-**`copyright`** zemnmez 2019
-
-**`license`** MIT
-## Installation
-
+Installation
+------------
 ```bash
 yarn add react-storage-hook
 ```
-Check out the [live example](https://zemnmez.github.io/react-storage-hook)!
-## Example
 
-**`example`** 
+Usage
+-----
 
-```javascript
-import React from 'react'
-import { useStorage } from 'react-storage-hook'
+See also [live example](https://zemnmez.github.io/react-storage-hook) with sourcemaps and the [local copy](./example).
 
-export const SavedTextarea = () => {
-  const [text, setText] = useStorage('saved-text', {
-    placeholder: ""
-  });
+```typescript
+import { useStorage } from 'react-storage-hook';
 
-  const onChange = e => setText(e.target.value);
+const SavedCheckbox = () => {
+  const [checked, setChecked] = useStorage('saved-checkbox-checked', {
+    placeholder: false,
+    // storageArea: sessionStorage // to use session storage instead
+  })
 
-  return <textarea {...{
+  const onChange = e => setChecked(e.target.checked);
+
+  return <input {...{
+    checked,
     onChange,
-    value: text
-  }}/>
+    type: "checkbox"
+  }}>
 }
 ```
 
-### Index
+The checked state will be stored and synchronized between instances of the page.
 
-#### Interfaces
-
-* [Options](interfaces/react_storage_hook.options.md)
-
-#### Functions
-
-* [useStorage](README.md#const-usestorage)
-
-## Functions
-
-### `Const` useStorage
-
-▸ **useStorage**<**InputType**>(`name`: *string*, `__namedParameters`: *object*): *[`Readonly<InputType>`, `setStored<InputType>`]*
-
-*Defined in [index.tsx:40](https://github.com/noahm/react-storage-hook/blob/7bbad39/src/index.tsx#L40)*
-
-useStorage is a react hook providing integration and synchronization with
-localStorage. The value returned will likely not be the same type as input,
-unless the input type is an immutable value that
-would be produced by immutable.js.
-
-The output value will always be an [[immutableValue]] of the kind produced by
-immutable.js.
-
-**Type parameters:**
-
-▪ **InputType**: *`__type`*
-
-**Parameters:**
-
-▪ **name**: *string*
-
-The key used to store the data in.
-
-▪`Default value`  **__namedParameters**: *object*=  {}
-
-Name | Type | Default |
------- | ------ | ------ |
-`placeholder` | undefined \| `InputType` | - |
-`storageArea` | `Storage` |  window.localStorage |
-
-**Returns:** *[`Readonly<InputType>`, `setStored<InputType>`]*
+The typescript types are authoratative for API scheme. 
