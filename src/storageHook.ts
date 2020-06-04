@@ -3,11 +3,12 @@ import * as React from 'react';
 
 
 /**
- * setStored is returned by useStorage.
- * It's used to set the stored value.
+ * setStored is returned by useStorage. It's used to set the stored value.
+ * Passing `null` or `undefined` will delete the value from storage.
+ * All components in all open tabs of the browser will receive the update.
  * @param InputType the data type to be stored.
  */
-export type setStored<InputType> = (newValue: InputType) => void;
+export type setStored<InputType> = (newValue: InputType | undefined) => void;
 
 /**
  * Options that can be provided to useStorage.
@@ -41,17 +42,17 @@ export const useStorage = <InputType>(
         placeholder,
         storageArea = window.localStorage
     }: Options<InputType> = {}
-): [Readonly<InputType>, setStored<InputType>] => {
+): [Readonly<InputType> | undefined, setStored<InputType>] => {
     let currentValue = storageArea.getItem(name);
-
+    let parsedValue: InputType | undefined;
     if (currentValue) {
         try {
-            currentValue = JSON.parse(currentValue);
+            parsedValue = JSON.parse(currentValue);
         } catch (e) {}
     }
 
-    const [value, setValue] = React.useState<InputType>(
-        currentValue? fromJS(currentValue): placeholder
+    const [value, setValue] = React.useState<InputType | undefined>(
+        parsedValue? fromJS(parsedValue): placeholder
     )
 
     type onStorageEvent = Pick<StorageEvent, 'key' | 'oldValue' | 'newValue' | 'storageArea'>;
@@ -60,24 +61,27 @@ export const useStorage = <InputType>(
     const onStorage = ({
         key, oldValue, newValue, storageArea: eventStorageArea
     }: onStorageEvent) => {
-        // if it's not our record, the value has not changed,
-        // or it's for another storage area we skip.
-        //
-        // there could, or perhaps *should* be an extra check
-        // of if our local value differs from the stored value,
-        // but React should handle this internally.
+        // if it's not our record, the value has not changed, or it's for another storage area we skip
+        if (key !== name || oldValue === newValue || storageArea !== eventStorageArea) return
 
-        if ( key !== name || newValue == null || oldValue === newValue
-            || storageArea !== eventStorageArea) return;
-
-        return setValue(fromJS(JSON.parse(newValue)))
+        let parsedNewValue: InputType | undefined;
+        if (newValue !== null) {
+            parsedNewValue = fromJS(JSON.parse(newValue))
+        }
+        setValue(parsedNewValue)
     }
 
     // set a new stored value
-    const setStorage = React.useCallback((value: InputType) => {
-        const oldValue = storageArea.getItem(name);
-        const newValue = JSON.stringify(value);
-        storageArea.setItem(name, newValue);
+    const setStorage = React.useCallback((value: InputType | undefined) => {
+        const oldValue: string | null = storageArea.getItem(name);
+        let newValue: string | null;
+        if (value === undefined || value === null) {
+          newValue = null
+          storageArea.removeItem(name)
+        } else {
+          newValue = JSON.stringify(value)
+          storageArea.setItem(name, newValue)
+        }
 
         // fire an event. onStorage only fires between windows
         // so this is needed to ensure we update ourselves.
@@ -87,7 +91,7 @@ export const useStorage = <InputType>(
             oldValue,
             storageArea
         });
-    }, [name, storageArea, onStorage]);
+    }, [name, storageArea]);
 
     // listen to storage events on mount and unmount
     React.useEffect(() => {
