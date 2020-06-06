@@ -18,31 +18,37 @@ const React = __importStar(require("react"));
  */
 exports.useStorage = (name, { placeholder, storageArea = window.localStorage } = {}) => {
     let currentValue = storageArea.getItem(name);
+    let parsedValue;
     if (currentValue) {
         try {
-            currentValue = JSON.parse(currentValue);
+            parsedValue = JSON.parse(currentValue);
         }
         catch (e) { }
     }
-    const [value, setValue] = React.useState(currentValue ? immutable_1.fromJS(currentValue) : placeholder);
+    const [value, setValue] = React.useState(parsedValue ? immutable_1.fromJS(parsedValue) : placeholder);
     // handle a storage event in our chosen storageArea
     const onStorage = ({ key, oldValue, newValue, storageArea: eventStorageArea }) => {
-        // if it's not our record, the value has not changed,
-        // or it's for another storage area we skip.
-        //
-        // there could, or perhaps *should* be an extra check
-        // of if our local value differs from the stored value,
-        // but React should handle this internally.
-        if (key !== name || newValue == null || oldValue === newValue
-            || storageArea !== eventStorageArea)
+        // if it's not our record, the value has not changed, or it's for another storage area we skip
+        if (key !== name || oldValue === newValue || storageArea !== eventStorageArea)
             return;
-        return setValue(immutable_1.fromJS(JSON.parse(newValue)));
+        let parsedNewValue;
+        if (newValue !== null) {
+            parsedNewValue = immutable_1.fromJS(JSON.parse(newValue));
+        }
+        setValue(parsedNewValue);
     };
     // set a new stored value
     const setStorage = React.useCallback((value) => {
         const oldValue = storageArea.getItem(name);
-        const newValue = JSON.stringify(value);
-        storageArea.setItem(name, newValue);
+        let newValue;
+        if (value === undefined || value === null) {
+            newValue = null;
+            storageArea.removeItem(name);
+        }
+        else {
+            newValue = JSON.stringify(value);
+            storageArea.setItem(name, newValue);
+        }
         // fire an event. onStorage only fires between windows
         // so this is needed to ensure we update ourselves.
         onStorage({
@@ -51,7 +57,7 @@ exports.useStorage = (name, { placeholder, storageArea = window.localStorage } =
             oldValue,
             storageArea
         });
-    }, [name, storageArea, onStorage]);
+    }, [name, storageArea]);
     // listen to storage events on mount and unmount
     React.useEffect(() => {
         window.addEventListener('storage', onStorage);

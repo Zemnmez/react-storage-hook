@@ -18,7 +18,8 @@
     "npm": ">=5"
   },
   "scripts": {
-    "build": "make build"
+    "build": "make build",
+    "start": "make start"
   },
   "dependencies": {},
   "peerDependencies": {
