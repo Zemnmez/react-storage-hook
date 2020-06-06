@@ -3,6 +3,8 @@ react-storage-hook
 
 Javascript library for synchronously managing localStorage / sessionStorage. Typescript types included.
 
+![demo.gif]
+
 Installation
 ------------
 ```bash
@@ -36,3 +38,6 @@ const SavedCheckbox = () => {
 The checked state will be stored and synchronized between instances of the page.
 
 The typescript types are authoratative for API scheme. 
+
+
+[demo.gif]: ./demo.gif
